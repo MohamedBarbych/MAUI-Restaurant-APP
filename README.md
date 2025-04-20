@@ -129,14 +129,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [SkiaSharp](https://github.com/mono/SkiaSharp)
 - [Icon8](https://icons8.com) for the icons used in the application
 
-## 📬 Contact
-
-Project Link: [https://github.com/yourusername/MyResto](https://github.com/MohamedBarbych/MAUI-Restaurant-APP)
-
----
-
-<p align="center">
-  Made with ❤️ by [Your Team Name]
-</p>
-
 
