@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyResto.Pages.AddAddressPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Ajouter une adresse"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- New modern color scheme -->
+            <Color x:Key="PrimaryColor">#6C63FF</Color>         <!-- Modern Purple -->
+            <Color x:Key="SecondaryColor">#F2F2F2</Color>       <!-- Light Gray -->
+            <Color x:Key="AccentColor">#4CAF50</Color>          <!-- Green -->
+            <Color x:Key="TextColor">#2D3436</Color>            <!-- Dark Gray -->
+            <Color x:Key="BackgroundColor">#FFFFFF</Color>      <!-- White -->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{StaticResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".6*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image Aspect="Center" Source="mapholder.png" />
+            <Image
+                HorizontalOptions="Center"
+                Source="pin"
+                VerticalOptions="Center" />
+        </Grid>
+        <Frame
+            Grid.Row="1"
+            Margin="0,-15,0,0"
+            BackgroundColor="{StaticResource BackgroundColor}"
+            BorderColor="{StaticResource SecondaryColor}"
+            CornerRadius="25"
+            HasShadow="True">
+            <VerticalStackLayout Spacing="15">
+                <Label
+                    Margin="0,0,0,15"
+                    FontFamily="bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    Text="Sélectionnez votre emplacement"
+                    TextColor="{StaticResource TextColor}" />
+                
+                <Frame 
+                    Padding="15" 
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    BorderColor="Transparent"
+                    CornerRadius="15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".1*" />
+                            <ColumnDefinition Width=".9*" />
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf002;"
+                                    Color="{StaticResource PrimaryColor}" />
+                            </Image.Source>
+                        </Image>
+                        <Entry 
+                            Grid.Column="1" 
+                            Placeholder="Rechercher un lieu"
+                            PlaceholderColor="Gray" />
+                    </Grid>
+                </Frame>
+
+                <Frame 
+                    Padding="15"
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    BorderColor="Transparent"
+                    CornerRadius="15">
+                    <Entry 
+                        Placeholder="Adresse exacte (Avenue, Rue, Zone, Quartier...)" 
+                        Text=""
+                        PlaceholderColor="Gray" />
+                </Frame>
+
+                <Frame 
+                    Padding="15"
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    BorderColor="Transparent"
+                    CornerRadius="15">
+                    <Entry 
+                        Placeholder="Point de repère" 
+                        PlaceholderColor="Gray" />
+                </Frame>
+
+                <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    Clicked="SaveAddress_Clicked"
+                    Command="{Binding GuardarDireccionCommand}"
+                    Text="Enregistrer l'adresse"
+                    TextColor="White"
+                    FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+
+</ContentPage>

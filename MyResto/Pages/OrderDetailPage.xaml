@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyResto.Pages.OrderDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Détails de la commande"
+    BackgroundColor="#FFF8E7"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid Margin="15,25,15,0" RowDefinitions=".1*,.8*,.1*">
+        <StackLayout Orientation="Horizontal">
+            <Label
+                FontFamily="bold"
+                FontSize="24"
+                Text="Maugly"
+                TextColor="#8B0000"
+                VerticalOptions="Center" />
+            <Frame
+                Padding="10,5"
+                BackgroundColor="#8B0000"
+                BorderColor="#D4AF37"
+                CornerRadius="15"
+                HeightRequest="35"
+                HorizontalOptions="EndAndExpand">
+                <Label
+                    FontFamily="bold"
+                    HorizontalTextAlignment="Center"
+                    Text="25 - 30 min"
+                    TextColor="#FFF8E7"
+                    VerticalTextAlignment="Center" />
+            </Frame>
+        </StackLayout>
+
+        <CollectionView
+            Grid.Row="1"
+            Margin="0,20,0,15"
+            ItemsSource="{Binding CurrentOrder.Products}"
+            SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Padding="15"
+                        BackgroundColor="White"
+                        BorderColor="#D4AF37"
+                        CornerRadius="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label
+                                FontFamily="bold"
+                                FontSize="18"
+                                Text="{Binding Name}"
+                                TextColor="#2D2D2D" />
+                            <Label
+                                Grid.Row="1"
+                                FontFamily="regular"
+                                Text="{Binding Price, StringFormat='{0} MAD'}"
+                                TextColor="#666666" />
+                            <Frame
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Padding="0"
+                                BackgroundColor="#F5E6CC"
+                                BorderColor="#D4AF37"
+                                CornerRadius="25"
+                                HeightRequest="45"
+                                HorizontalOptions="Center">
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Button
+                                        x:Name="btnMinus"
+                                        Padding="0"
+                                        BackgroundColor="Transparent"
+                                        FontFamily="bold"
+                                        FontSize="30"
+                                        Text="-"
+                                        TextColor="#8B0000"
+                                        WidthRequest="70" />
+                                    <Label
+                                        x:Name="lblNoPerons"
+                                        Grid.Column="1"
+                                        Margin="0,0,0,0"
+                                        FontFamily="bold"
+                                        FontSize="20"
+                                        HeightRequest="45"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Quantity}"
+                                        TextColor="#2D2D2D"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        WidthRequest="70" />
+                                    <Button
+                                        x:Name="btnPlus"
+                                        Grid.Column="2"
+                                        Padding="0"
+                                        BackgroundColor="Transparent"
+                                        FontFamily="bold"
+                                        FontSize="30"
+                                        Text="+"
+                                        TextColor="#8B0000"
+                                        WidthRequest="70" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="2"
+            Margin="10"
+            BackgroundColor="#8B0000"
+            BorderColor="#D4AF37"
+            BorderWidth="1"
+            Clicked="Checkout_Clicked"
+            CornerRadius="25"
+            FontFamily="bold"
+            HeightRequest="50"
+            Text="Payer maintenant"
+            TextColor="#FFF8E7" />
+    </Grid>
+
+</ContentPage>

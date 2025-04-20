@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyResto.Pages.PaymentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    Title="Paiement"
+    BackgroundColor="#8B0000"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions=".2*,.8*">
+        <Label
+            FontFamily="bold"
+            FontSize="28"
+            HorizontalOptions="Center"
+            Text="Mode de paiement"
+            TextColor="#FFF8E7"
+            VerticalOptions="Center" />
+        
+        <Grid Grid.Row="1" RowDefinitions=".1*,.1*,.6*,.2*">
+            <BoxView
+                Grid.RowSpan="4"
+                CornerRadius="25,25,0,0"
+                Color="#FFF8E7">
+                <BoxView.Shadow>
+                    <Shadow
+                        Brush="#D4AF37"
+                        Opacity=".3"
+                        Offset="0,-5" />
+                </BoxView.Shadow>
+            </BoxView>
+
+            <Label
+                Margin="20"
+                FontFamily="bold"
+                FontSize="20"
+                Text="Mes cartes"
+                TextColor="#2D2D2D" />
+                
+            <Frame
+                Grid.Row="1"
+                Margin="15"
+                Padding="10"
+                BackgroundColor="#F5E6CC"
+                BorderColor="#D4AF37"
+                CornerRadius="15"
+                HeightRequest="55">
+                <StackLayout Orientation="Horizontal">
+                    <Button
+                        BackgroundColor="Transparent"
+                        FontFamily="bold"
+                        FontSize="24"
+                        Text="+"
+                        TextColor="#8B0000" />
+                    <Label
+                        Margin="15,0,0,0"
+                        FontFamily="regular"
+                        Text="Ajouter une nouvelle carte"
+                        TextColor="#666666"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+            <CollectionView Grid.Row="2" Margin="15">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>**** **** **** 8723</x:String>
+                        <x:String>**** **** **** 2749</x:String>
+                        <x:String>**** **** **** 3392</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame 
+                            BorderColor="#D4AF37"
+                            BackgroundColor="White"
+                            CornerRadius="15"
+                            Padding="15,10">
+                            <StackLayout Orientation="Horizontal">
+                                <RadioButton 
+                                    Content="{Binding .}" 
+                                    GroupName="Cards" />
+                                <Image 
+                                    HorizontalOptions="EndAndExpand" 
+                                    WidthRequest="5">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="AwesomeSolid"
+                                            Glyph="&#xf142;"
+                                            Color="#666666" />
+                                    </Image.Source>
+                                </Image>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                Grid.Row="3"
+                Margin="15"
+                BackgroundColor="#8B0000"
+                BorderColor="#D4AF37"
+                BorderWidth="1"
+                Clicked="Pay_Clicked"
+                CornerRadius="25"
+                FontFamily="bold"
+                HeightRequest="55"
+                Text="Payer maintenant            258.99 MAD"
+                TextColor="#FFF8E7" />
+        </Grid>
+
+        <Grid
+            x:Name="paymentScreen"
+            Grid.RowSpan="2"
+            BackgroundColor="#2D2D2D"
+            IsVisible="False"
+            Opacity=".9">
+            <skia:SKLottieView
+                x:Name="animation"
+                IsAnimationEnabled="False"
+                Source="payment.json" />
+        </Grid>
+    </Grid>
+</ContentPage>

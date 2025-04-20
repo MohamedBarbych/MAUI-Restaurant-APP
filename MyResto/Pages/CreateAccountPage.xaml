@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyResto.Pages.CreateAccountPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    Title="Créer un compte"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height=".7*" />
+        </Grid.RowDefinitions>
+        <Image Aspect="AspectFill" Source="dummy.png" />
+        <!-- Changed primary color to a rich burgundy -->
+        <Grid BackgroundColor="#8B0000" Opacity=".9" />
+        <Grid ColumnDefinitions="*,*">
+            <skia:SKLottieView
+                Grid.Column="1"
+                HeightRequest="100"
+                RepeatCount="-1"
+                Source="initialanimation.json" />
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="120"
+                Source="applogo.png" />
+        </Grid>
+        <Frame
+            Grid.Row="1"
+            Margin="0,-30,0,0"
+            BackgroundColor="#FFF8E7"
+            CornerRadius="25"
+            BorderColor="#D4AF37">
+            <Grid>
+                <VerticalStackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="bold"
+                        FontSize="24"
+                        Text="Créer votre compte"
+                        TextColor="#2D2D2D" />
+                    <Grid Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#F5E6CC"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf007;"
+                                        Color="#8B0000" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            Placeholder="NOM"
+                            PlaceholderColor="#666666"
+                            TextColor="#333333"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#F5E6CC"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf0e0;"
+                                        Color="#8B0000" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            Placeholder="EMAIL"
+                            PlaceholderColor="#666666"
+                            TextColor="#333333"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Grid Margin="0,25,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#F5E6CC"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="60">
+                            <Image HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="AwesomeSolid"
+                                        Glyph="&#xf084;"
+                                        Color="#8B0000" />
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                        <Entry
+                            Grid.Column="1"
+                            IsPassword="True"
+                            Placeholder="MOT DE PASSE"
+                            PlaceholderColor="#666666"
+                            TextColor="#333333"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <Button
+                        Margin="0,30,0,0"
+                        BackgroundColor="#8B0000"
+                        Clicked="CreateAccount_Clicked"
+                        HeightRequest="60"
+                        Text="Créer votre compte"
+                        TextColor="#FFF8E7"
+                        CornerRadius="30" />
+
+                    <Label 
+                        Margin="0,15,0,0"
+                        HorizontalOptions="Center"
+                        TextColor="#666666">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Déjà un compte? " />
+                                <Span Text="Se connecter" TextColor="#8B0000" TextDecorations="Underline" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+
+</ContentPage>

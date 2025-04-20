@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyResto.Pages.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyResto.Converters"
+    Title="Menu"
+    BackgroundColor="#FFF8E7"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <converters:StringToColorConverter x:Key="ColorConverter" />
+        <Style x:Key="transparent" TargetType="Frame">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#8B0000" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".9*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CollectionView
+            x:Name="categories"
+            BackgroundColor="#F5E6CC"
+            ItemsSource="{Binding Categories}"
+            SelectionMode="Single"
+            Style="{StaticResource transparent}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="35" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Margin="5,0,0,0"
+                            FontFamily="bold"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Name}"
+                            TextColor="#8B0000"
+                            VerticalOptions="Center" />
+                        <Image
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            WidthRequest="15">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf111;"
+                                    Color="#D4AF37" />
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView
+            Grid.Row="1"
+            Margin="15,0,15,0"
+            ItemsSource="{Binding MenuFiltrado}"
+            SelectedItem="{Binding CurrentProduct}"
+            SelectionChanged="Product_SelectionChanged"
+            SelectionChangedCommand="{Binding ProductChangedCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".7*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".3*" />
+                            <RowDefinition Height=".4*" />
+                            <RowDefinition Height=".3*" />
+                        </Grid.RowDefinitions>
+                        <BoxView
+                            Grid.RowSpan="3"
+                            Grid.ColumnSpan="2"
+                            Color="White"
+                            CornerRadius="15">
+                            <BoxView.Shadow>
+                                <Shadow
+                                    Brush="#D4AF37"
+                                    Opacity=".3"
+                                    Offset="5,5" />
+                            </BoxView.Shadow>
+                        </BoxView>
+                        <Image
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="{Binding Image}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="15,0,10,0"
+                            FontFamily="bold"
+                            FontSize="Medium"
+                            Text="{Binding Name}"
+                            TextColor="#2D2D2D"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="15,0,10,0"
+                            FontFamily="medium"
+                            Opacity=".6"
+                            Text="{Binding Description}"
+                            TextColor="#666666"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="15,0,10,0"
+                            FontFamily="bold"
+                            FontSize="Medium"
+                            Text="{Binding Price, StringFormat='{0} MAD'}"
+                            TextColor="#8B0000"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid 
+            Grid.Row="2" 
+            HeightRequest="70"
+            BackgroundColor="#8B0000"
+            ColumnDefinitions="*,*">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Grid.GestureRecognizers>
+            
+            <Label
+                FontFamily="bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Text="PAYER"
+                TextColor="#FFF8E7"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Column="1"
+                FontFamily="bold"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="Panier: 3 Articles - 250 MAD"
+                TextColor="#FFF8E7"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </Grid>
+
+</ContentPage>
